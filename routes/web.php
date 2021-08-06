@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::name('test.')->prefix('test')->group(function () {
+    Route::get('/hello', [TasksController::class, 'hello'])->name('hello');
+    Route::get('/lara', [TasksController::class, 'lara'])->name('lara');
+    Route::get('/demo', [TasksController::class, 'demo'])->name('demo');
+});
+
+
