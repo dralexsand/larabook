@@ -5,55 +5,17 @@ namespace App\Traits;
 
 trait SeederDataTrait
 {
-    public static function listBrands()
+
+    public static function lisTypes()
     {
         return [
-            'Toyota' => [
-                'Crown', 'Camry', 'Corolla', 'Land Cruiser', 'Harrier',
-            ],
-            'Ford' => [
-                'Mustang', 'S-Max', 'Puma', 'Bronco Sport', 'Explorer',
-            ],
-            'BMW' => [
-                'X7 (G07)', '7 Series (G11/G12)', '7 Series (F01/F02)', 'X4 (F26)', '6 Series (F06/F12/F13)',
-            ],
-            'Porsche' => [
-                'Cayenne', 'Macan', 'Taycan', 'Panamera', 'Carrera GT',
-            ],
-            'Lexus' => [
-                'Lexus LY-650 Yacht', ' Lexus LS+', 'Lexus UX', 'Lexus HPX', 'LX 570',
-            ],
-        ];
-    }
-
-    public static function generateCarNumber()
-    {
-        $car_number = [];
-
-        $car_number[0] = strtoupper(self::generateRandomString(1));
-        $car_number[1] = rand(111, 999);
-        $car_number[2] = strtoupper(self::generateRandomString(3));
-
-        return implode('', $car_number);
-    }
-
-    public static function listColors()
-    {
-        return [
-            'red', 'silver', 'metallic', 'black', 'white', 'orange', 'yellow', 'blue', 'green'
-        ];
-    }
-
-    public static function listTypeTransmissions()
-    {
-        return [
-            'automatic', 'manual'
+            'list', 'list_plus_open', 'list_open',
         ];
     }
 
     public static function getRandomValueFromObject($obj)
     {
-        $length = sizeof($obj);
+        $length = count($obj);
         $arr = json_decode(json_encode($obj), true);
         return $arr[rand(0, $length - 1)];
     }

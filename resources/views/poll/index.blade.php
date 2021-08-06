@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Show')
+@section('title', 'List')
 
 @section('content')
-    <h4>Show</h4>
+    <h4>List</h4>
 @endsection
 
 @section('footerScripts')

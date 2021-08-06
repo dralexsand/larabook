@@ -1,12 +1,12 @@
-@extends('poll.layout.app')
+@extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Create')
 
 @section('content')
-    <h4>Welcome</h4>
+    <h4>Create</h4>
 @endsection
 
 @section('footerScripts')
     @parent
-    <script src="dashboard.js"></script>
+    <script src="{{ asset('js/custom.js') }}"></script>
 @endsection
