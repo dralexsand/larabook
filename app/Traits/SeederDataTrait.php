@@ -9,7 +9,7 @@ trait SeederDataTrait
     public static function lisTypes()
     {
         return [
-            'list', 'list_plus_open', 'list_open',
+            'checkbox', 'radio', 'open',
         ];
     }
 
@@ -30,5 +30,31 @@ trait SeederDataTrait
         }
         return $randomString;
     }
+
+    public static function generateRandomOnlyString($length = 10)
+    {
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+
+    public function generatePhrase($count = 3)
+    {
+        $i = 1;
+        $phrase_first = self::generateRandomOnlyString(8, 13);
+        $phrase[] = ucfirst(mb_strtolower($phrase_first));
+
+        while ($i < $count) {
+            $phrase[] = mb_strtolower(self::generateRandomOnlyString(8, 13));
+            $i++;
+        }
+
+        return implode(' ', $phrase);
+    }
+
 
 }

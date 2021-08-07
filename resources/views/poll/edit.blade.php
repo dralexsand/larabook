@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Create poll')
+@section('title', 'Edit poll')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Create New Poll</h2>
+                <h2>Edit Poll</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('poll.index') }}"> Back</a>
@@ -25,11 +25,14 @@
         </div>
     @endif
 
+    <p>ID: {{ $poll->id }}</p>
+
     <form
         class="form"
         method="post"
-        action="{{ route('poll.store') }}"
+        action="{{ route('poll.update', $poll->id) }}"
     >
+        @method('PUT')
         @csrf
 
         <div class="mb-3">
@@ -39,6 +42,7 @@
                 class="form-control"
                 id="poll"
                 name="name"
+                value="{{ $poll->name }}"
             >
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>

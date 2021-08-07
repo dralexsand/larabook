@@ -10,4 +10,21 @@ class Block extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function poll()
+    {
+        return $this->belongsTo(Poll::class);
+    }
+
+    public function question()
+    {
+        return $this->hasOne(Question::class);
+    }
+
+    public function pollitems()
+    {
+        return $this->hasMany(Pollitem::class);
+    }
+
+
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePacketsTable extends Migration
+class CreateBlocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreatePacketsTable extends Migration
      */
     public function up()
     {
-        Schema::create('packets', function (Blueprint $table) {
+        Schema::create('blocks', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('poll_id')->nullable()->default(0);
             $table->string('name');
-            $table->bigInteger('block_id')->nullable()->default(0);
-            $table->integer('type_id')->nullable();
-            $table->integer('limit')->nullable()->default(0);
+            $table->integer('order')->nullable()->default(999);
+            $table->integer('type_id');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreatePacketsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('packets');
+        Schema::dropIfExists('blocks');
     }
 }

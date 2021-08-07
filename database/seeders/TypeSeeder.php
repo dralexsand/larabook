@@ -6,7 +6,7 @@ use App\Traits\SeederDataTrait;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class TypesSeeder extends Seeder
+class TypeSeeder extends Seeder
 {
     use SeederDataTrait;
 
