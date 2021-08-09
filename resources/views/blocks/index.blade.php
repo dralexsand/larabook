@@ -1,16 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'List polls')
+@section('title', 'Index')
 
 @section('content')
+
+    <a class="btn btn-success" href="{{ route('poll.index') }}"> To Poll list</a>
 
     <div class="row" style="margin-top: 5rem;">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Polls list</h2>
+                <h2>Blocks</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('poll.create') }}"> Create New Poll</a>
+                <a class="btn btn-success" href="{{ route('blocks.create') }}"> Create New Block</a>
             </div>
         </div>
     </div>
@@ -21,26 +23,20 @@
         </div>
     @endif
 
-    <hr>
-
-    <table class="table table-striped table-bordered">
-        <thead>
+    <table class="table table-bordered">
         <tr>
-            <th>Id</th>
+            <th>ID</th>
             <th>Name</th>
             <th width="280px">Action</th>
         </tr>
-        </thead>
-
-        <tbody>
-        @foreach ($data as $key => $poll)
+        @foreach ($data as $key => $value)
             <tr>
-                <td>{{ $poll->id }}</td>
-                <td>{{ $poll->name }}</td>
+                <td>{{ ++$i }}</td>
+                <td>{{ $value->poll->name }} | {{ $value->name }}</td>
                 <td>
-                    <form action="{{ route('poll.destroy',$poll->id) }}" method="POST">
-                        <a class="btn btn-info" href="{{ route('poll.show',$poll->id) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('poll.edit',$poll->id) }}">Edit</a>
+                    <form action="{{ route('blocks.destroy',$value->id) }}" method="POST">
+                        <a class="btn btn-info" href="{{ route('blocks.show',$value->id) }}">Show</a>
+                        <a class="btn btn-primary" href="{{ route('blocks.edit',$value->id) }}">Edit</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -48,9 +44,7 @@
                 </td>
             </tr>
         @endforeach
-        </tbody>
     </table>
-
     {!! $data->links() !!}
 
 @endsection

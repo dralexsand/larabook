@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\BlockController;
 use App\Http\Controllers\PollController;
+use App\Http\Controllers\PollitemController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,4 +17,7 @@ Route::name('demo.')->prefix('poll')->group(function () {
 });
 
 Route::resource('poll', PollController::class);
+Route::resource('blocks', BlockController::class);
+Route::resource('questions', QuestionController::class);
+Route::resource('pollitems', PollitemController::class);
 
