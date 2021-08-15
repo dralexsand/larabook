@@ -5,10 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\Poll;
 use App\Models\Pollmodel;
 use App\Models\Question;
+use App\Services\PollService;
 use Illuminate\Http\Request;
 
 class PollController extends Controller
 {
+
+    protected PollService $service;
+
+
+    public function __construct(PollService $pollService)
+    {
+        $this->service = $pollService;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -59,6 +70,18 @@ class PollController extends Controller
         return view('poll.show', [
             'poll' => $poll
         ]);
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function polls(int $id)
+    {
+        return $this->service->getPolls($id);
     }
 
 

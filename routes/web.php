@@ -21,3 +21,9 @@ Route::resource('blocks', BlockController::class);
 Route::resource('questions', QuestionController::class);
 Route::resource('pollitems', PollitemController::class);
 
+Route::get('/polls/{id}', [PollController::class, 'polls'])
+    ->name('polls.items');
+
+Route::get('/preview/{id}', [\App\Http\Controllers\PreviewController::class, 'show'])
+    ->name('preview.show');
+

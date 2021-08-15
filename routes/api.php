@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::namespace('polls')->prefix('polls')->group(function () {
-    Route::get('/', [ApiPollController::class, 'index']);
+    //Route::get('/', [ApiPollController::class, 'index']);
     Route::get('/{id}', [ApiPollController::class, 'show'])->where(['id' => '[0-9]+']);
 });
 

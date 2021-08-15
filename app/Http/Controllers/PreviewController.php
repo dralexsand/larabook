@@ -1,15 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Api\v1;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Poll;
-use App\Models\Pollitem;
-use Illuminate\Database\Eloquent\Model;
+use App\Services\PollService;
 use Illuminate\Http\Request;
 
-class ApiPollController extends Controller
+class PreviewController extends Controller
 {
+    protected PollService $service;
+
+    public function __construct(PollService $pollService)
+    {
+        $this->service = $pollService;
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,10 +22,17 @@ class ApiPollController extends Controller
      */
     public function index()
     {
-        return [
-            'success' => true,
-            'data' => [],
-        ];
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -31,10 +43,7 @@ class ApiPollController extends Controller
      */
     public function store(Request $request)
     {
-        return [
-            'success' => true,
-            'data' => [],
-        ];
+        //
     }
 
     /**
@@ -45,19 +54,22 @@ class ApiPollController extends Controller
      */
     public function show($id)
     {
-        $query = Poll::where('id', $id)
-            ->with('blocks', function ($blocks) {
-                $blocks
-                    ->with('question')
-                    ->with('pollitems')
-                    ->get();
-            })
-            ->first();
+        $poll = $this->service->getPolls($id);
 
-        return [
-            'success' => true,
-            'data' => $query,
-        ];
+        return view('preview.show', [
+            'poll' => $poll['data']
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -69,10 +81,7 @@ class ApiPollController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return [
-            'success' => true,
-            'data' => [],
-        ];
+        //
     }
 
     /**
@@ -83,9 +92,6 @@ class ApiPollController extends Controller
      */
     public function destroy($id)
     {
-        return [
-            'success' => true,
-            'data' => [],
-        ];
+        //
     }
 }

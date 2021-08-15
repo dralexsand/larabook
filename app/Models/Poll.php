@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static where(string $string, int $id)
+ */
 class Poll extends Model
 {
     use HasFactory;
@@ -16,5 +19,6 @@ class Poll extends Model
     {
         return $this->hasMany(Block::class);
     }
+
 
 }
